@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -62,6 +63,34 @@ public class SecondController {
 	}
 	
 	
+	@RequestMapping("/gp")
+	public String gp(){
+		return "/model/getpost";
+	}
+	
+	//RequestMapping 파라미터 get
+	@RequestMapping( method = RequestMethod.GET, value="/std" )
+	public String get(HttpServletRequest httpServletRequest, Model model){
+		System.out.println("get");
+
+		String id=httpServletRequest.getParameter("id");
+		String pw=httpServletRequest.getParameter("pw");
+		model.addAttribute("id",id);
+		model.addAttribute("pw",pw);
+		return "/model/getpost2";	
+	}
+	
+	//RequestMapping 파라미터 post
+	@RequestMapping( method = RequestMethod.POST, value="/std" )
+	public String post(HttpServletRequest httpServletRequest, Model model){
+		System.out.println("post");
+
+		String id=httpServletRequest.getParameter("id");
+		String pw=httpServletRequest.getParameter("pw");
+		model.addAttribute("id",id);
+		model.addAttribute("pw",pw);
+		return "/model/getpost2";	
+	}
 }
 
 
